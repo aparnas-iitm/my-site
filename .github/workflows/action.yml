@@ -9,16 +9,16 @@ on:
   workflow_dispatch:  # Allows manual triggering from the GitHub interface
 
 jobs:
-  my-job:
+  test:
     runs-on: ubuntu-latest  # Runs the job on an Ubuntu machine
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Include your email in the step name as required
-      - name: '21f3002580@ds.study.iitm.ac.in'  # Email is included in the name (quotes are fine)
-        run: echo "Hello, world! This is the email: 21f3002580@ds.study.iitm.ac.in"
+      # Step 2: Specific step with email in the name
+      - name: '21f3002580@ds.study.iitm.ac.in'
+        run: echo "Hello, world!"
 
       # Step 3: Commit and push changes (example step)
       - name: Commit changes
@@ -26,5 +26,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Automated update" || exit 0
-          git push
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit."
+          else
+            git commit -m "Automated update"
+            git push
+          fi
