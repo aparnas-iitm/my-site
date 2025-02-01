@@ -1,0 +1,31 @@
+name: My Custom Action
+
+# Trigger this action on push, schedule, or manually
+on:
+  push:
+    branches:
+      - main  # Runs the action on push to the 'main' branch
+  schedule:
+    - cron: "0 12 * * *"  # Runs at 12:00 UTC every day (if needed)
+  workflow_dispatch:  # Allows manual triggering from the GitHub interface
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest  # Runs the job on an Ubuntu machine
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # Step 2: Run a script that contains your email address
+      - name: 21f3002580@ds.study.iitm.ac.in
+        run: echo "Hello, world!"
+
+      # Step 3: Commit and push changes if necessary (example step)
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Automated update" || exit 0
+          git push
