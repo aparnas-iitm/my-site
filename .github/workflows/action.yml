@@ -1,6 +1,5 @@
 name: My Custom Action
 
-# Trigger this action on push, schedule, or manually
 on:
   push:
     branches:
@@ -16,12 +15,12 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      # Step 2: Run a script that contains your email address
-      - name: 21f3002580@ds.study.iitm.ac.in
-        run: echo "Hello, world!"
 
-      # Step 3: Commit and push changes if necessary (example step)
+      # Step 2: Include your email in the step name as required
+      - name: '21f3002580@ds.study.iitm.ac.in'  # Enclose the email address in quotes to avoid issues
+        run: echo "Hello, world! This is the email: 21f3002580@ds.study.iitm.ac.in"
+
+      # Step 3: Commit and push changes (optional example step)
       - name: Commit changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
